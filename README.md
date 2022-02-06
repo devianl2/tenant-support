@@ -10,6 +10,16 @@ Install from composer
 composer require devianl2/tenant-support
 ```
 
+Go to App/Provider/RouteServiceProvider.php and modify rate limit to 600
+```sh
+protected function configureRateLimiting()
+    {
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(600)->by(optional($request->user())->id ?: $request->ip());
+        });
+    }
+```
+
 ## Step 2:
 Go to laravel project / app / Exceptions / Handler.php and modify from
 ```sh
