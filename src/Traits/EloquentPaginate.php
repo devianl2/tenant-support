@@ -46,7 +46,7 @@ trait EloquentPaginate
         }
 
         if ($paginate) {
-            return $builder->paginate($this->getLimit());
+            return $builder->paginate($this->getLimit())->withQueryString();
         } else {
             if ($length && $length != '') {
                 $builder = $builder->limit($this->getLimit());
