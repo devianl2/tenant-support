@@ -15,7 +15,7 @@ class TenantSupportProvider extends ServiceProvider
     protected function offerPublishing() {
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/errors/error'),
+            __DIR__.'/../resources/views/error.blade.php' => resource_path('views/errors/error'),
         ]);
     }
 }
