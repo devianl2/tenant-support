@@ -16,6 +16,6 @@ class TenantSupportProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../resources/views/error.blade.php' => resource_path('views/errors/error'),
-        ]);
+        ], 'views');
     }
 }
