@@ -1,5 +1,7 @@
 <?php
 
+namespace Tenant\Support;
+
 use Illuminate\Foundation\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
 
