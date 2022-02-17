@@ -10,6 +10,10 @@ Install from composer
 composer require devianl2/tenant-support
 ```
 
+Run the following command for to export error view template
+
+php artisan vendor:publish --provider="Tenant\Auth\TenantSupportProvider"
+
 Go to App/Provider/RouteServiceProvider.php and modify rate limit to 600
 ```sh
 protected function configureRateLimiting()
