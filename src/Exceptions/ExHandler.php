@@ -52,65 +52,52 @@ class ExHandler extends ExceptionHandler
 
         $this->renderable(function (Throwable $exception, $request) {
 
-            $statusCode =   0;
-            $message    =   '';
+            $statusCode = 0;
+            $message = '';
 
-            if ($exception instanceof AuthorizationException)
-            {
-                $statusCode =   401;
-                $message    =   $exception->getMessage();
-            }
-
-            if ($exception instanceof AccessDeniedHttpException)
-            {
-                $statusCode =   401;
-                $message    =   $exception->getMessage();
-            }
-            else if ($exception instanceof ForbiddenException)
-            {
-                $statusCode =   403;
-                $message    =   $exception->getMessage();
-            }
-            else if ($exception instanceof ModelNotFoundException)
-            {
-                $statusCode =   404;
-                $message    =   'Not found.';
-            }
-            else if ($exception instanceof NotFoundHttpException)
-            {
-                $statusCode =   404;
-                $message    =   'Not found.';
-            }
-            else if ($exception instanceof MethodNotAllowedHttpException)
-            {
-                $statusCode =   404;
-                $message    =   'Not found.';
-            }
-            else if ($exception instanceof MethodNotFoundException)
-            {
-                $statusCode =   405;
-                $message    =   'Method not found.';
-            }
-            else if ($exception instanceof \InvalidArgumentException)
-            {
-                $statusCode =   500;
-                $message    =   'Invalid argument.';
-            }
-            else if ($exception instanceof HttpResponseException)
-            {
-                $statusCode =   500;
-                $message    =   'Internal server error.';
-            }
-            else if ($exception instanceof NoTenantFound){
-                $statusCode =   403;
-                $message    =   'No tenant found';
-            }
-            else if ($exception instanceof Exception){
-                $statusCode =   500;
-                $message    =   $exception->getMessage();
+            if ($exception instanceof AuthorizationException) {
+                $statusCode = 401;
+                $message = $exception->getMessage();
             }
 
-            return $this->errorResponse($message, $statusCode);
+            if ($exception instanceof AccessDeniedHttpException) {
+                $statusCode = 401;
+                $message = $exception->getMessage();
+            } else if ($exception instanceof ForbiddenException) {
+                $statusCode = 403;
+                $message = $exception->getMessage();
+            } else if ($exception instanceof ModelNotFoundException) {
+                $statusCode = 404;
+                $message = 'Not found.';
+            } else if ($exception instanceof NotFoundHttpException) {
+                $statusCode = 404;
+                $message = 'Not found.';
+            } else if ($exception instanceof MethodNotAllowedHttpException) {
+                $statusCode = 404;
+                $message = 'Not found.';
+            } else if ($exception instanceof MethodNotFoundException) {
+                $statusCode = 405;
+                $message = 'Method not found.';
+            } else if ($exception instanceof \InvalidArgumentException) {
+                $statusCode = 500;
+                $message = 'Invalid argument.';
+            } else if ($exception instanceof HttpResponseException) {
+                $statusCode = 500;
+                $message = 'Internal server error.';
+            } else if ($exception instanceof NoTenantFound) {
+                $statusCode = 403;
+                $message = 'No tenant found';
+            } else if ($exception instanceof Exception) {
+                $statusCode = 500;
+                $message = $exception->getMessage();
+            }
+
+            if ($request->wantsJson()) {
+                return $this->errorResponse($message, $statusCode);
+            } else
+            {
+                abort($statusCode);
+            }
         });
     }
 }
