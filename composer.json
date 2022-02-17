@@ -25,6 +25,13 @@
             "Tenant\\Support\\": "/src"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tenant\\Support\\TenantSupportProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }

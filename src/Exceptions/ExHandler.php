@@ -96,7 +96,10 @@ class ExHandler extends ExceptionHandler
                 return $this->errorResponse($message, $statusCode);
             } else
             {
-                abort($statusCode, $message);
+                return response()->view('errors.error', [
+                    'code'  =>  $statusCode,
+                    'message'   =>  $message
+                ], $statusCode);
             }
         });
     }
