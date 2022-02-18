@@ -3,6 +3,7 @@
 namespace Tenant\Support\Traits;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 trait TenantSupport
 {
@@ -23,5 +24,29 @@ trait TenantSupport
         }
 
         return $tenantId;
+    }
+
+    /**
+     * Return current request token
+     * @param Request $request
+     * @return array|string|null
+     */
+    public function getBearerToken(Request $request)
+    {
+        if ($request->hasHeader('Authorization') &&
+            !empty($request->header('Authorization'))
+        )
+        {
+            return $request->header('Authorization');
+        }
+        else
+        {
+            if (Cookie::has('Authorization'))
+            {
+                return Cookie::get('Authorization');
+            }
+        }
+
+        return null;
     }
 }
