@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Cookie;
 
 trait TenantSupport
 {
+
     /**
      * Get tenantId
      * @return string

@@ -3,8 +3,6 @@
 namespace Tenant\Support\Exceptions;
 
 use Tenant\Support\Traits\ApiResponse;
-use Tenant\Support\Exceptions\ForbiddenException;
-use Tenant\Support\Exceptions\NoTenantFound;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -58,9 +56,7 @@ class ExHandler extends ExceptionHandler
             if ($exception instanceof AuthorizationException) {
                 $statusCode = 401;
                 $message = $exception->getMessage();
-            }
-
-            if ($exception instanceof AccessDeniedHttpException) {
+            }else if ($exception instanceof AccessDeniedHttpException) {
                 $statusCode = 401;
                 $message = $exception->getMessage();
             } else if ($exception instanceof ForbiddenException) {
