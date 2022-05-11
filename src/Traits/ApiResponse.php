@@ -12,7 +12,7 @@ trait ApiResponse
     }
     public function errorResponse($errorMessage, $statusCode)
     {
-        return response()->json(['error' => $errorMessage, 'error_code' => $statusCode], $statusCode)->header('Content-Type', 'application/json');
+        return response(['error' => $errorMessage, 'error_code' => $statusCode], $statusCode)->header('Content-Type', 'application/json');
     }
     public function errorMessage($errorMessage, $statusCode)
     {
