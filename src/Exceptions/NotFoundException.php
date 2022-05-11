@@ -4,7 +4,7 @@ namespace Tenant\Support\Exceptions;
 
 use Exception;
 
-class NoTenantFound extends Exception
+class NotFoundException extends Exception
 {
     /**
      * @param string|null     $message  The internal exception message
@@ -14,7 +14,7 @@ class NoTenantFound extends Exception
     {
         if (empty($message)) {
 
-            $message = 'Tenant not found';
+            $message = 'Data not found';
         }
 
         parent::__construct($message, $code);

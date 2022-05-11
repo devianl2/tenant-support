@@ -53,37 +53,52 @@ class ExHandler extends ExceptionHandler
             $statusCode = 0;
             $message = '';
 
-            if ($exception instanceof AuthorizationException) {
+            if ($exception instanceof AuthorizationException) 
+            {
                 $statusCode = 401;
                 $message = $exception->getMessage();
-            }else if ($exception instanceof AccessDeniedHttpException) {
+            }else if ($exception instanceof AccessDeniedHttpException) 
+            {
                 $statusCode = 401;
                 $message = $exception->getMessage();
-            } else if ($exception instanceof ForbiddenException) {
+            } else if ($exception instanceof ForbiddenException) 
+            {
                 $statusCode = 403;
                 $message = $exception->getMessage();
-            } else if ($exception instanceof ModelNotFoundException) {
+            } else if ($exception instanceof ModelNotFoundException) 
+            {
                 $statusCode = 404;
-                $message = 'Not found.';
-            } else if ($exception instanceof NotFoundHttpException) {
+                $message = 'Data not found.';
+            } else if ($exception instanceof NotFoundHttpException) 
+            {
                 $statusCode = 404;
-                $message = 'Not found.';
-            } else if ($exception instanceof MethodNotAllowedHttpException) {
+                $message = 'Data not found.';
+            } else if ($exception instanceof MethodNotAllowedHttpException) 
+            {
                 $statusCode = 404;
-                $message = 'Not found.';
-            } else if ($exception instanceof MethodNotFoundException) {
+                $message = 'Data not found.';
+            } else if ($exception instanceof MethodNotFoundException) 
+            {
                 $statusCode = 405;
-                $message = 'Method not found.';
-            } else if ($exception instanceof \InvalidArgumentException) {
+                $message = 'Method Data not found.';
+            } else if ($exception instanceof \InvalidArgumentException) 
+            {
                 $statusCode = 500;
                 $message = 'Invalid argument.';
-            } else if ($exception instanceof HttpResponseException) {
+            } else if ($exception instanceof HttpResponseException) 
+            {
                 $statusCode = 500;
                 $message = 'Internal server error.';
-            } else if ($exception instanceof NoTenantFound) {
-                $statusCode = 403;
-                $message = 'No tenant found';
-            } else if ($exception instanceof Exception) {
+            } else if ($exception instanceof NoTenantFound) 
+            {
+                $statusCode = 404;
+                $message = $exception->getMessage();
+            }  else if ($exception instanceof NotFoundException) 
+            {
+                $statusCode = 404;
+                $message = $exception->getMessage();
+            } else if ($exception instanceof Exception) 
+            {
                 $statusCode = 500;
                 $message = $exception->getMessage();
             }
