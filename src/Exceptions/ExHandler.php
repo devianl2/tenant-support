@@ -86,7 +86,7 @@ class ExHandler extends ExceptionHandler
             else if ($exception instanceof MethodNotFoundException)
             {
                 $statusCode = 405;
-                $message = 'Method Data not found.';
+                $message = 'Method not found.';
             }
             else if ($exception instanceof \InvalidArgumentException)
             {
